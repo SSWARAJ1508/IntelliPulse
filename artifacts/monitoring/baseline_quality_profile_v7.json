@@ -1,0 +1,48 @@
+{
+  "total_rows": 5634,
+  "total_columns": 19,
+  "numerical_features": 4,
+  "categorical_features": 15,
+  "duplicate_rows": 26,
+  "total_missing_values": 0,
+  "missing_per_column": {},
+  "unique_category_counts": {
+    "gender": 2,
+    "Partner": 2,
+    "Dependents": 2,
+    "PhoneService": 2,
+    "MultipleLines": 3,
+    "InternetService": 3,
+    "OnlineSecurity": 3,
+    "OnlineBackup": 3,
+    "DeviceProtection": 3,
+    "TechSupport": 3,
+    "StreamingTV": 3,
+    "StreamingMovies": 3,
+    "Contract": 3,
+    "PaperlessBilling": 2,
+    "PaymentMethod": 4
+  },
+  "numerical_ranges": {
+    "tenure": {
+      "min": 0.0,
+      "max": 72.0,
+      "range": 72.0
+    },
+    "MonthlyCharges": {
+      "min": 18.4,
+      "max": 118.75,
+      "range": 100.35
+    },
+    "TotalCharges": {
+      "min": 0.0,
+      "max": 8684.8,
+      "range": 8684.8
+    },
+    "SeniorCitizen": {
+      "min": 0.0,
+      "max": 1.0,
+      "range": 1.0
+    }
+  }
+}

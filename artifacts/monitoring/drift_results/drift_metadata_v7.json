@@ -1,0 +1,30 @@
+{
+  "version": "V7.3",
+  "created_at": "2026-09-07T14:02:24.813607",
+  "description": "Drift detection results comparing V7.2 incoming batches against the V7.1 baseline distribution. Statistical tests with Benjamini-Hochberg multiple-testing correction.",
+  "alpha": 0.05,
+  "correction_method": "fdr_bh",
+  "correction_description": "Benjamini-Hochberg False Discovery Rate",
+  "test_methods": {
+    "numerical": "Two-sample Kolmogorov-Smirnov test (scipy.stats.ks_2samp)",
+    "categorical": "Chi-square goodness-of-fit test (scipy.stats.chisquare)"
+  },
+  "magnitude_measures": {
+    "numerical": "KS statistic (maximum ECDF separation, 0-1)",
+    "categorical": "Total Variation Distance (0.5 * sum|p_base - p_batch|, 0-1)"
+  },
+  "severity_rules": {
+    "LOW": "< 20% of features show statistically significant drift",
+    "MEDIUM": "20%-50% of features show drift",
+    "HIGH": "> 50% of features show drift"
+  },
+  "baseline_reference": "artifacts/monitoring/baseline_profile_v7.json",
+  "batches_analyzed": [
+    "batch_001",
+    "batch_002",
+    "batch_003"
+  ],
+  "number_of_features": 19,
+  "numerical_features": 4,
+  "categorical_features": 15
+}

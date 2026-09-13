@@ -1,0 +1,122 @@
+{
+  "version": "V8",
+  "experiment": "Model Performance Monitoring",
+  "description": "Evaluate whether the frozen XGBoost model's predictive performance has degraded on labeled evaluation data under controlled population shifts.",
+  "model_artifact": "artifacts/models/churn_xgboost_v4_tuned.joblib",
+  "model_hash": "aa144ecf6b7844e490566ec19d862ccccb53edf49167e0284cef0ac550d1b852",
+  "threshold": 0.29,
+  "degradation_rule": {
+    "primary_metric": "F1",
+    "threshold_pct": 10.0,
+    "rule": "F1 degradation >= 10% -> DEGRADED, else STABLE",
+    "note": "Project-specific threshold, not a universal industry standard."
+  },
+  "evaluation_data": {
+    "source": "data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv",
+    "split": "test_size=0.2, random_state=42, stratify=y",
+    "test_rows": 1409,
+    "train_rows": 5634
+  },
+  "scenarios": {
+    "A_stable": {
+      "description": "Random sample with replacement from test set. No intentional distribution shift. Control case.",
+      "batch_size": 1000,
+      "churn_rate": 0.263,
+      "features_shifted": [],
+      "limitation": "The label is inherited from the original labeled dataset. These are controlled evaluation scenarios, not real future production outcomes."
+    },
+    "B_moderate_shift": {
+      "description": "Moderate population shift: Contract skewed toward Month-to-month, tenure shifted lower, MonthlyCharges increased by $5, TotalCharges recalculated. Labels preserved from original rows.",
+      "batch_size": 1000,
+      "churn_rate": 0.353,
+      "features_shifted": [
+        "Contract",
+        "tenure",
+        "MonthlyCharges",
+        "TotalCharges"
+      ],
+      "limitation": "The label is inherited from the original labeled dataset. These are controlled evaluation scenarios, not real future production outcomes."
+    },
+    "C_strong_shift": {
+      "description": "Strong population shift: Contract heavily skewed toward Month-to-month, tenure shifted very low, MonthlyCharges increased by $12, InternetService shifted toward Fiber optic. Labels preserved from original rows.",
+      "batch_size": 1000,
+      "churn_rate": 0.421,
+      "features_shifted": [
+        "Contract",
+        "tenure",
+        "MonthlyCharges",
+        "TotalCharges",
+        "InternetService"
+      ],
+      "limitation": "The label is inherited from the original labeled dataset. These are controlled evaluation scenarios, not real future production outcomes."
+    }
+  },
+  "degradation_results": {
+    "A_stable": {
+      "f1_baseline": 0.6357,
+      "f1_current": 0.6181,
+      "f1_absolute_change": -0.0176,
+      "f1_percentage_change": -2.77,
+      "degradation_threshold_pct": 10.0,
+      "performance_status": "STABLE"
+    },
+    "B_moderate_shift": {
+      "f1_baseline": 0.6357,
+      "f1_current": 0.6682,
+      "f1_absolute_change": 0.0325,
+      "f1_percentage_change": 5.11,
+      "degradation_threshold_pct": 10.0,
+      "performance_status": "STABLE"
+    },
+    "C_strong_shift": {
+      "f1_baseline": 0.6357,
+      "f1_current": 0.6832,
+      "f1_absolute_change": 0.0475,
+      "f1_percentage_change": 7.47,
+      "degradation_threshold_pct": 10.0,
+      "performance_status": "STABLE"
+    }
+  },
+  "performance_changes": [
+    {
+      "scenario": "A_stable",
+      "accuracy_absolute_change": -0.0178,
+      "accuracy_percentage_change": -2.34,
+      "precision_absolute_change": -0.0263,
+      "precision_percentage_change": -4.93,
+      "recall_absolute_change": 0.0048,
+      "recall_percentage_change": 0.61,
+      "f1_absolute_change": -0.0176,
+      "f1_percentage_change": -2.77,
+      "roc_auc_absolute_change": -0.016,
+      "roc_auc_percentage_change": -1.88
+    },
+    {
+      "scenario": "B_moderate_shift",
+      "accuracy_absolute_change": -0.0488,
+      "accuracy_percentage_change": -6.41,
+      "precision_absolute_change": 0.0295,
+      "precision_percentage_change": 5.53,
+      "recall_absolute_change": 0.0354,
+      "recall_percentage_change": 4.5,
+      "f1_absolute_change": 0.0325,
+      "f1_percentage_change": 5.11,
+      "roc_auc_absolute_change": -0.0387,
+      "roc_auc_percentage_change": -4.56
+    },
+    {
+      "scenario": "C_strong_shift",
+      "accuracy_absolute_change": -0.0928,
+      "accuracy_percentage_change": -12.2,
+      "precision_absolute_change": 0.0374,
+      "precision_percentage_change": 7.01,
+      "recall_absolute_change": 0.0643,
+      "recall_percentage_change": 8.18,
+      "f1_absolute_change": 0.0475,
+      "f1_percentage_change": 7.47,
+      "roc_auc_absolute_change": -0.053,
+      "roc_auc_percentage_change": -6.24
+    }
+  ],
+  "created_at": "2026-09-08T09:06:52.019457"
+}

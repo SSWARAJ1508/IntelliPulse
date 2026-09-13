@@ -1,0 +1,29 @@
+{
+  "experiment": "V5 \u2014 XGBoost Threshold Optimization",
+  "best_threshold": 0.29,
+  "validation_f1_at_best_threshold": 0.6385674931129477,
+  "test_metrics_at_0_50": {
+    "threshold": 0.5,
+    "accuracy": 0.8055358410220014,
+    "precision": 0.6724137931034483,
+    "recall": 0.5213903743315508,
+    "f1": 0.5873493975903614,
+    "roc_auc": 0.8490493166963755,
+    "tp": 195.0,
+    "tn": 940.0,
+    "fp": 95.0,
+    "fn": 179.0
+  },
+  "test_metrics_at_best_threshold": {
+    "threshold": 0.29,
+    "accuracy": 0.7608232789212207,
+    "precision": 0.5335753176043557,
+    "recall": 0.786096256684492,
+    "f1": 0.6356756756756756,
+    "roc_auc": 0.8490493166963755,
+    "tp": 294.0,
+    "tn": 778.0,
+    "fp": 257.0,
+    "fn": 80.0
+  }
+}

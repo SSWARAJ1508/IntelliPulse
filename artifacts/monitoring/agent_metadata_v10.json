@@ -1,0 +1,33 @@
+{
+  "version": "V10",
+  "timestamp": "2026-09-08T15:03:46.456646",
+  "agent_architecture": "LangGraph + LangChain + Gemini",
+  "available_tools": [
+    "get_latest_health",
+    "get_drift_results",
+    "get_feature_drift",
+    "get_performance_results",
+    "get_monitoring_summary"
+  ],
+  "supported_intents": [
+    "OVERALL_HEALTH",
+    "DATA_DRIFT",
+    "MODEL_PERFORMANCE",
+    "FEATURE_DRIFT",
+    "PERFORMANCE_COMPARISON",
+    "RECOMMENDATION",
+    "GENERAL_MONITORING",
+    "SECURITY_VIOLATION"
+  ],
+  "model_configuration": {
+    "provider": "Google",
+    "model": "gemini-1.5-pro",
+    "temperature": 0
+  },
+  "graph_nodes": [
+    "classify_question",
+    "retrieve_monitoring_context",
+    "generate_response"
+  ],
+  "validation_results": "PASS"
+}

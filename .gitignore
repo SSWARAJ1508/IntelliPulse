@@ -1,0 +1,51 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Secrets and Environment Variables
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Logs and scratch files
+*.log
+.system_generated/
+scratch/
+
+# Artifact models:
+# Ignore large experimental models (>10MB), but explicitly preserve the frozen production XGBoost model
+artifacts/models/*.joblib
+artifacts/models/*.pkl
+!artifacts/models/churn_xgboost_v4_tuned.joblib
+
+# Ephemeral test/upload batches (preserve preset scenarios batch_001_stable, batch_002_mild_shift, batch_003_strong_shift)
+artifacts/monitoring/incoming_batches/batch_[0-9a-f]*.csv
+data/raw/*.xls

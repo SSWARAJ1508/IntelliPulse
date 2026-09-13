@@ -1,0 +1,12 @@
+{
+  "experiment": "V6 \u2014 XGBoost Model Interpretability with SHAP",
+  "top_5_global_features": [
+    "Contract_Month-to-month",
+    "tenure",
+    "MonthlyCharges",
+    "InternetService_Fiber optic",
+    "OnlineSecurity_No"
+  ],
+  "local_customer_explained": 5300,
+  "local_customer_prob": 0.8167076110839844
+}

@@ -1,0 +1,74 @@
+{
+  "version": "V9",
+  "timestamp": "2026-09-08T14:27:54.742731",
+  "scoring_configuration": {
+    "data_health_weight": 0.4,
+    "model_health_weight": 0.6
+  },
+  "thresholds": {
+    "model_degradation_alert_pct": 10.0,
+    "status_mapping": {
+      "90-100": "HEALTHY",
+      "75-89.9": "MONITOR",
+      "50-74.9": "INVESTIGATE",
+      "0-49.9": "CRITICAL"
+    }
+  },
+  "batch_assessments": [
+    {
+      "batch_id": "batch_001",
+      "scenario": "stable",
+      "drifted_features": 0,
+      "total_features": 19,
+      "drift_percentage": 0.0,
+      "data_health_score": 100,
+      "data_health_status": "HEALTHY",
+      "baseline_f1": 0.6357,
+      "current_f1": 0.6181,
+      "f1_absolute_change": -0.01760000000000006,
+      "f1_percentage_change": -2.7686015416076857,
+      "model_health_score": 90,
+      "model_health_status": "STABLE",
+      "overall_health_score": 94.0,
+      "overall_health_status": "HEALTHY",
+      "recommendation": "Model and input data are currently stable. Continue routine monitoring."
+    },
+    {
+      "batch_id": "batch_002",
+      "scenario": "mild_shift",
+      "drifted_features": 15,
+      "total_features": 19,
+      "drift_percentage": 78.9,
+      "data_health_score": 20,
+      "data_health_status": "VERY_HIGH_DRIFT",
+      "baseline_f1": 0.6357,
+      "current_f1": 0.6682,
+      "f1_absolute_change": 0.03249999999999997,
+      "f1_percentage_change": 5.1124744376278075,
+      "model_health_score": 100,
+      "model_health_status": "HEALTHY",
+      "overall_health_score": 68.0,
+      "overall_health_status": "MONITOR",
+      "recommendation": "Significant input distribution change detected, but model performance has not degraded beyond the configured threshold. Continue monitoring and investigate the drifting features."
+    },
+    {
+      "batch_id": "batch_003",
+      "scenario": "strong_shift",
+      "drifted_features": 17,
+      "total_features": 19,
+      "drift_percentage": 89.5,
+      "data_health_score": 20,
+      "data_health_status": "VERY_HIGH_DRIFT",
+      "baseline_f1": 0.6357,
+      "current_f1": 0.6832,
+      "f1_absolute_change": 0.04749999999999999,
+      "f1_percentage_change": 7.472078024225261,
+      "model_health_score": 100,
+      "model_health_status": "HEALTHY",
+      "overall_health_score": 68.0,
+      "overall_health_status": "MONITOR",
+      "recommendation": "Significant input distribution change detected, but model performance has not degraded beyond the configured threshold. Continue monitoring and investigate the drifting features."
+    }
+  ],
+  "overall_system_status": "MONITOR"
+}

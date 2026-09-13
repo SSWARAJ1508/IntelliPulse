@@ -1,0 +1,116 @@
+{
+  "version": "V7.2",
+  "created_at": "2026-09-07T12:17:22.051381",
+  "description": "Incoming data batches generated for data-drift monitoring testing. Each batch is derived from the original training data (X_train) with controlled distribution shifts. The XGBoost model (V4) and threshold (V5=0.29) are frozen.",
+  "baseline_rows": 5634,
+  "batches": [
+    {
+      "batch_id": "batch_001",
+      "scenario": "stable",
+      "file": "incoming_batches/batch_001_stable.csv",
+      "row_count": 1000,
+      "random_state": 101,
+      "features_intentionally_shifted": [],
+      "description": "Random sample with replacement from baseline. No intentional distribution shift applied. Control case.",
+      "generation_timestamp": "2026-09-07T12:17:22.051381"
+    },
+    {
+      "batch_id": "batch_002",
+      "scenario": "mild_shift",
+      "file": "incoming_batches/batch_002_mild_shift.csv",
+      "row_count": 1000,
+      "random_state": 202,
+      "features_intentionally_shifted": [
+        "Contract",
+        "tenure",
+        "MonthlyCharges",
+        "TotalCharges"
+      ],
+      "transformations": [
+        {
+          "feature": "Contract",
+          "method": "Weighted resampling (Month-to-month weight=2x)",
+          "baseline": "Month-to-month ~55%",
+          "target": "Month-to-month ~65%",
+          "rationale": "Competitive pressure pushing shorter contract commitments"
+        },
+        {
+          "feature": "tenure",
+          "method": "Replace 20% of rows with low-tenure (<=12 months) samples",
+          "baseline": "mean ~32.5 months",
+          "target": "mean ~26 months",
+          "rationale": "New customer acquisition wave bringing shorter-tenure customers"
+        },
+        {
+          "feature": "MonthlyCharges",
+          "method": "Add $5 offset, clip to original domain range",
+          "baseline": "mean ~$64.93",
+          "target": "mean ~$70",
+          "rationale": "Modest price adjustment and upselling of premium services"
+        },
+        {
+          "feature": "TotalCharges",
+          "method": "Recalculated as tenure * MonthlyCharges (clipped)",
+          "baseline": "Derived from original",
+          "target": "Adjusted to maintain consistency with shifted tenure and charges",
+          "rationale": "Maintains internal consistency \u2014 TotalCharges depends on tenure and MonthlyCharges"
+        }
+      ],
+      "description": "Mild distribution shift: Contract skewed toward Month-to-month (~65%), tenure shifted lower (~26 mo mean), MonthlyCharges increased by $5, TotalCharges recalculated for consistency. Represents a plausible competitive pressure + new customer acquisition scenario.",
+      "generation_timestamp": "2026-09-07T12:17:22.051381"
+    },
+    {
+      "batch_id": "batch_003",
+      "scenario": "strong_shift",
+      "file": "incoming_batches/batch_003_strong_shift.csv",
+      "row_count": 1000,
+      "random_state": 303,
+      "features_intentionally_shifted": [
+        "Contract",
+        "tenure",
+        "MonthlyCharges",
+        "TotalCharges",
+        "InternetService"
+      ],
+      "transformations": [
+        {
+          "feature": "Contract",
+          "method": "Weighted resampling (Month-to-month weight=3.5x)",
+          "baseline": "Month-to-month ~55%",
+          "target": "Month-to-month ~75%",
+          "rationale": "Aggressive market shift toward flexible, no-commitment plans"
+        },
+        {
+          "feature": "tenure",
+          "method": "Replace 40% of rows with low-tenure (<=12 months) samples",
+          "baseline": "mean ~32.5 months",
+          "target": "mean ~18 months",
+          "rationale": "Large influx of new customers with very short tenure"
+        },
+        {
+          "feature": "MonthlyCharges",
+          "method": "Add $12 offset, clip to original domain range",
+          "baseline": "mean ~$64.93",
+          "target": "mean ~$77",
+          "rationale": "Significant price increase and push toward premium tiers"
+        },
+        {
+          "feature": "TotalCharges",
+          "method": "Recalculated as tenure * MonthlyCharges (clipped)",
+          "baseline": "Derived from original",
+          "target": "Adjusted to maintain consistency with shifted tenure and charges",
+          "rationale": "Maintains internal consistency"
+        },
+        {
+          "feature": "InternetService",
+          "method": "Weighted resampling (Fiber optic weight=1.8x, combined with Contract weighting)",
+          "baseline": "Fiber optic ~44%",
+          "target": "Fiber optic ~60%",
+          "rationale": "Fiber infrastructure rollout increasing fiber optic adoption"
+        }
+      ],
+      "description": "Strong distribution shift: Contract heavily skewed toward Month-to-month (~75%), tenure shifted very low (~18 mo mean), MonthlyCharges increased by $12, InternetService shifted toward Fiber optic (~60%), TotalCharges recalculated for consistency. Represents a plausible aggressive market disruption scenario.",
+      "generation_timestamp": "2026-09-07T12:17:22.051381"
+    }
+  ]
+}

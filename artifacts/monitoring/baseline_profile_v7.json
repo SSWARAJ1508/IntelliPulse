@@ -1,0 +1,392 @@
+{
+  "version": "V7.1",
+  "created_at": "2026-09-07T11:59:50.106990",
+  "description": "Baseline data profile for data-drift monitoring. Represents the statistical characteristics of the training data used to train the fixed baseline XGBoost model (V4) with threshold 0.29 (V5).",
+  "dataset": {
+    "source": "data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv",
+    "total_dataset_rows": 7043,
+    "baseline_rows": 5634,
+    "baseline_source": "X_train (training split, 80%, random_state=42, stratify=y)",
+    "target_column": "Churn",
+    "id_column": "customerID",
+    "target_excluded_from_drift": true
+  },
+  "features": {
+    "numerical": [
+      "tenure",
+      "MonthlyCharges",
+      "TotalCharges",
+      "SeniorCitizen"
+    ],
+    "categorical": [
+      "gender",
+      "Partner",
+      "Dependents",
+      "PhoneService",
+      "MultipleLines",
+      "InternetService",
+      "OnlineSecurity",
+      "OnlineBackup",
+      "DeviceProtection",
+      "TechSupport",
+      "StreamingTV",
+      "StreamingMovies",
+      "Contract",
+      "PaperlessBilling",
+      "PaymentMethod"
+    ],
+    "total_monitored": 19
+  },
+  "numerical_profile": {
+    "tenure": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "mean": 32.4851,
+      "median": 29.0,
+      "std": 24.5687,
+      "min": 0.0,
+      "max": 72.0,
+      "q01": 1.0,
+      "q05": 1.0,
+      "q25": 9.0,
+      "q5": 29.0,
+      "q75": 55.0,
+      "q95": 72.0,
+      "q99": 72.0
+    },
+    "MonthlyCharges": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "mean": 64.93,
+      "median": 70.5,
+      "std": 30.1381,
+      "min": 18.4,
+      "max": 118.75,
+      "q01": 19.2,
+      "q05": 19.65,
+      "q25": 35.6625,
+      "q5": 70.5,
+      "q75": 90.0,
+      "q95": 107.3675,
+      "q99": 114.9835
+    },
+    "TotalCharges": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "mean": 2299.3347,
+      "median": 1394.925,
+      "std": 2279.2043,
+      "min": 0.0,
+      "max": 8684.8,
+      "q01": 19.75,
+      "q05": 48.8275,
+      "q25": 402.975,
+      "q5": 1394.925,
+      "q75": 3835.825,
+      "q95": 6977.385,
+      "q99": 8039.769
+    },
+    "SeniorCitizen": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "mean": 0.1633,
+      "median": 0.0,
+      "std": 0.3697,
+      "min": 0.0,
+      "max": 1.0,
+      "q01": 0.0,
+      "q05": 0.0,
+      "q25": 0.0,
+      "q5": 0.0,
+      "q75": 0.0,
+      "q95": 1.0,
+      "q99": 1.0
+    }
+  },
+  "categorical_profile": {
+    "gender": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 2,
+      "frequencies": {
+        "Male": 2833,
+        "Female": 2801
+      },
+      "proportions": {
+        "Male": 0.5028,
+        "Female": 0.4972
+      }
+    },
+    "Partner": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 2,
+      "frequencies": {
+        "No": 2905,
+        "Yes": 2729
+      },
+      "proportions": {
+        "No": 0.5156,
+        "Yes": 0.4844
+      }
+    },
+    "Dependents": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 2,
+      "frequencies": {
+        "No": 3955,
+        "Yes": 1679
+      },
+      "proportions": {
+        "No": 0.702,
+        "Yes": 0.298
+      }
+    },
+    "PhoneService": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 2,
+      "frequencies": {
+        "Yes": 5075,
+        "No": 559
+      },
+      "proportions": {
+        "Yes": 0.9008,
+        "No": 0.0992
+      }
+    },
+    "MultipleLines": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "No": 2685,
+        "Yes": 2390,
+        "No phone service": 559
+      },
+      "proportions": {
+        "No": 0.4766,
+        "Yes": 0.4242,
+        "No phone service": 0.0992
+      }
+    },
+    "InternetService": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "Fiber optic": 2483,
+        "DSL": 1937,
+        "No": 1214
+      },
+      "proportions": {
+        "Fiber optic": 0.4407,
+        "DSL": 0.3438,
+        "No": 0.2155
+      }
+    },
+    "OnlineSecurity": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "No": 2797,
+        "Yes": 1623,
+        "No internet service": 1214
+      },
+      "proportions": {
+        "No": 0.4965,
+        "Yes": 0.2881,
+        "No internet service": 0.2155
+      }
+    },
+    "OnlineBackup": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "No": 2442,
+        "Yes": 1978,
+        "No internet service": 1214
+      },
+      "proportions": {
+        "No": 0.4334,
+        "Yes": 0.3511,
+        "No internet service": 0.2155
+      }
+    },
+    "DeviceProtection": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "No": 2472,
+        "Yes": 1948,
+        "No internet service": 1214
+      },
+      "proportions": {
+        "No": 0.4388,
+        "Yes": 0.3458,
+        "No internet service": 0.2155
+      }
+    },
+    "TechSupport": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "No": 2771,
+        "Yes": 1649,
+        "No internet service": 1214
+      },
+      "proportions": {
+        "No": 0.4918,
+        "Yes": 0.2927,
+        "No internet service": 0.2155
+      }
+    },
+    "StreamingTV": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "No": 2226,
+        "Yes": 2194,
+        "No internet service": 1214
+      },
+      "proportions": {
+        "No": 0.3951,
+        "Yes": 0.3894,
+        "No internet service": 0.2155
+      }
+    },
+    "StreamingMovies": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "No": 2217,
+        "Yes": 2203,
+        "No internet service": 1214
+      },
+      "proportions": {
+        "No": 0.3935,
+        "Yes": 0.391,
+        "No internet service": 0.2155
+      }
+    },
+    "Contract": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 3,
+      "frequencies": {
+        "Month-to-month": 3102,
+        "Two year": 1359,
+        "One year": 1173
+      },
+      "proportions": {
+        "Month-to-month": 0.5506,
+        "Two year": 0.2412,
+        "One year": 0.2082
+      }
+    },
+    "PaperlessBilling": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 2,
+      "frequencies": {
+        "Yes": 3331,
+        "No": 2303
+      },
+      "proportions": {
+        "Yes": 0.5912,
+        "No": 0.4088
+      }
+    },
+    "PaymentMethod": {
+      "count": 5634,
+      "missing_count": 0,
+      "missing_percentage": 0.0,
+      "n_unique": 4,
+      "frequencies": {
+        "Electronic check": 1891,
+        "Mailed check": 1286,
+        "Bank transfer (automatic)": 1244,
+        "Credit card (automatic)": 1213
+      },
+      "proportions": {
+        "Electronic check": 0.3356,
+        "Mailed check": 0.2283,
+        "Bank transfer (automatic)": 0.2208,
+        "Credit card (automatic)": 0.2153
+      }
+    }
+  },
+  "quality": {
+    "total_rows": 5634,
+    "total_columns": 19,
+    "numerical_features": 4,
+    "categorical_features": 15,
+    "duplicate_rows": 26,
+    "total_missing_values": 0,
+    "missing_per_column": {},
+    "unique_category_counts": {
+      "gender": 2,
+      "Partner": 2,
+      "Dependents": 2,
+      "PhoneService": 2,
+      "MultipleLines": 3,
+      "InternetService": 3,
+      "OnlineSecurity": 3,
+      "OnlineBackup": 3,
+      "DeviceProtection": 3,
+      "TechSupport": 3,
+      "StreamingTV": 3,
+      "StreamingMovies": 3,
+      "Contract": 3,
+      "PaperlessBilling": 2,
+      "PaymentMethod": 4
+    },
+    "numerical_ranges": {
+      "tenure": {
+        "min": 0.0,
+        "max": 72.0,
+        "range": 72.0
+      },
+      "MonthlyCharges": {
+        "min": 18.4,
+        "max": 118.75,
+        "range": 100.35
+      },
+      "TotalCharges": {
+        "min": 0.0,
+        "max": 8684.8,
+        "range": 8684.8
+      },
+      "SeniorCitizen": {
+        "min": 0.0,
+        "max": 1.0,
+        "range": 1.0
+      }
+    }
+  }
+}

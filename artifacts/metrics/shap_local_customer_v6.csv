@@ -1,0 +1,46 @@
+Feature,Feature Value,SHAP Value,Direction
+tenure,-1.2816237461508113,0.77583504,Toward churn
+Contract_Month-to-month,1.0,0.6242718,Toward churn
+TotalCharges,-0.9737967258028598,0.4717157,Toward churn
+InternetService_Fiber optic,1.0,0.21734394,Toward churn
+OnlineSecurity_No,1.0,0.19191703,Toward churn
+TechSupport_No,1.0,0.18408608,Toward churn
+PaymentMethod_Electronic check,0.0,-0.13385205,Away from churn
+MonthlyCharges,0.5017362871420736,0.09278193,Toward churn
+PaperlessBilling_No,0.0,0.08740069,Toward churn
+MultipleLines_No,1.0,-0.070333004,Away from churn
+Contract_Two year,0.0,0.06657934,Toward churn
+Dependents_No,0.0,-0.054906137,Away from churn
+InternetService_DSL,0.0,0.04446933,Toward churn
+OnlineBackup_No,1.0,0.043311197,Toward churn
+StreamingTV_Yes,1.0,0.041794635,Toward churn
+StreamingMovies_Yes,0.0,-0.030875353,Away from churn
+SeniorCitizen,-0.44177295439277764,-0.023492139,Away from churn
+Dependents_Yes,1.0,-0.018212697,Away from churn
+MultipleLines_Yes,0.0,-0.01536524,Away from churn
+StreamingMovies_No,1.0,-0.014413509,Away from churn
+PaperlessBilling_Yes,1.0,0.012312757,Toward churn
+OnlineSecurity_Yes,0.0,0.011339195,Toward churn
+PaymentMethod_Mailed check,1.0,-0.011330975,Away from churn
+Contract_One year,0.0,-0.010248225,Away from churn
+DeviceProtection_No,1.0,0.008875752,Toward churn
+gender_Female,1.0,0.008404697,Toward churn
+PhoneService_No,0.0,-0.007911337,Away from churn
+InternetService_No,0.0,0.007445744,Toward churn
+StreamingTV_No,0.0,0.0073892777,Toward churn
+PaymentMethod_Credit card (automatic),0.0,0.006978613,Toward churn
+OnlineBackup_Yes,0.0,0.0066002244,Toward churn
+gender_Male,0.0,0.005660497,Toward churn
+PaymentMethod_Bank transfer (automatic),0.0,-0.005412857,Away from churn
+Partner_No,0.0,0.004192174,Toward churn
+OnlineSecurity_No internet service,0.0,0.003932239,Toward churn
+DeviceProtection_Yes,0.0,-0.0024727718,Away from churn
+PhoneService_Yes,1.0,-0.0023593865,Away from churn
+TechSupport_Yes,0.0,0.0018728168,Toward churn
+DeviceProtection_No internet service,0.0,0.00072466227,Toward churn
+Partner_Yes,1.0,-0.00057801686,Away from churn
+MultipleLines_No phone service,0.0,-0.0001463461,Away from churn
+StreamingMovies_No internet service,0.0,0.0,Away from churn
+StreamingTV_No internet service,0.0,0.0,Away from churn
+TechSupport_No internet service,0.0,0.0,Away from churn
+OnlineBackup_No internet service,0.0,0.0,Away from churn

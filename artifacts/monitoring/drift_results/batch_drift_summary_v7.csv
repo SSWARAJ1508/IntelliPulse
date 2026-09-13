@@ -1,0 +1,4 @@
+batch_id,scenario,total_features,drifted_features,drift_percentage,numerical_drifted,categorical_drifted,avg_magnitude,severity
+batch_001,stable,19,0,0.0,0,0,0.0,LOW
+batch_002,mild_shift,19,15,78.9,3,12,0.1049,HIGH
+batch_003,strong_shift,19,17,89.5,3,14,0.1521,HIGH

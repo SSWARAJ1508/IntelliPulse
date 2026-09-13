@@ -1,0 +1,28 @@
+{
+  "experiment": "V3.1 \u2014 Random Forest Hyperparameter Optimization",
+  "model": "RandomForestClassifier(tuned)",
+  "model_artifact": "artifacts/models/churn_random_forest_v3_1_tuned.joblib",
+  "random_state": 42,
+  "test_size": 1409,
+  "train_size": 5634,
+  "best_params": {
+    "classifier__n_estimators": 300,
+    "classifier__min_samples_split": 10,
+    "classifier__min_samples_leaf": 4,
+    "classifier__max_features": null,
+    "classifier__max_depth": 10
+  },
+  "best_cv_f1": 0.581590711201325,
+  "metrics_at_050": {
+    "threshold": 0.5,
+    "accuracy": 0.7963094393186657,
+    "precision": 0.639871382636656,
+    "recall": 0.5320855614973262,
+    "f1": 0.581021897810219,
+    "roc_auc": 0.8372704022320392,
+    "tp": 199,
+    "fp": 112,
+    "fn": 175,
+    "tn": 923
+  }
+}

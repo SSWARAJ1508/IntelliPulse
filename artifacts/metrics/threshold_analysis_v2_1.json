@@ -1,0 +1,41 @@
+{
+  "experiment": "V2.1 \u2014 Classification Threshold Analysis",
+  "model": "LogisticRegression_V1 (unchanged)",
+  "model_artifact": "artifacts/models/churn_baseline_v1.joblib",
+  "v1_threshold": 0.5,
+  "v1_metrics": {
+    "accuracy": 0.8055,
+    "precision": 0.6572,
+    "recall": 0.5588,
+    "f1": 0.604,
+    "tp": 209,
+    "fp": 109,
+    "fn": 165,
+    "tn": 926
+  },
+  "best_f1_threshold": 0.27,
+  "best_f1_metrics": {
+    "accuracy": 0.7466,
+    "precision": 0.5149,
+    "recall": 0.7834,
+    "f1": 0.6214,
+    "tp": 293,
+    "fp": 276,
+    "fn": 81,
+    "tn": 759
+  },
+  "provisional_threshold": 0.27,
+  "provisional_metrics": {
+    "accuracy": 0.7466,
+    "precision": 0.5149,
+    "recall": 0.7834,
+    "f1": 0.6214,
+    "tp": 293,
+    "fp": 276,
+    "fn": 81,
+    "tn": 759
+  },
+  "selection_reason": "The recall-oriented threshold (0.27) catches significantly more churners while maintaining an F1 within 10% of the best-F1 threshold. Given the asymmetric cost of missing churners, this is the pragmatic choice.",
+  "random_state": 42,
+  "test_size": 1409
+}

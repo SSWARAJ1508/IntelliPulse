@@ -1,0 +1,16 @@
+feature,count,missing_count,missing_percentage,n_unique
+gender,5634,0,0.0,2
+Partner,5634,0,0.0,2
+Dependents,5634,0,0.0,2
+PhoneService,5634,0,0.0,2
+MultipleLines,5634,0,0.0,3
+InternetService,5634,0,0.0,3
+OnlineSecurity,5634,0,0.0,3
+OnlineBackup,5634,0,0.0,3
+DeviceProtection,5634,0,0.0,3
+TechSupport,5634,0,0.0,3
+StreamingTV,5634,0,0.0,3
+StreamingMovies,5634,0,0.0,3
+Contract,5634,0,0.0,3
+PaperlessBilling,5634,0,0.0,2
+PaymentMethod,5634,0,0.0,4

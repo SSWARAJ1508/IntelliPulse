@@ -1,0 +1,22 @@
+{
+  "experiment": "V3 \u2014 Random Forest Baseline",
+  "model": "RandomForestClassifier(n_estimators=300)",
+  "model_artifact": "artifacts/models/churn_random_forest_v3.joblib",
+  "random_state": 42,
+  "test_size": 1409,
+  "train_size": 5634,
+  "n_estimators": 300,
+  "class_weight": null,
+  "metrics_at_050": {
+    "threshold": 0.5,
+    "accuracy": 0.7771,
+    "precision": 0.6007,
+    "recall": 0.4786,
+    "f1": 0.5327,
+    "roc_auc": 0.8206,
+    "tp": 179,
+    "fp": 119,
+    "fn": 195,
+    "tn": 916
+  }
+}
