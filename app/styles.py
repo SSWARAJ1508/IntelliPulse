@@ -451,30 +451,43 @@ def apply_custom_styles(theme: str = "dark", sidebar_collapsed: bool = False):
             border-radius: 4px;
         }}
 
-        /* ── Sidebar System (Strict 260px / 72px) ────────────────────────── */
-        [data-testid="stSidebar"] {{
-            background-color: var(--bg-sidebar) !important;
-            border-right: 1px solid var(--border) !important;
-            width: {sidebar_width} !important;
-            min-width: {sidebar_width} !important;
-            max-width: {sidebar_width} !important;
-            box-shadow: none !important;
-            transform: none !important;
-            margin-left: 0 !important;
-            display: block !important;
-            visibility: visible !important;
-            transition: width 280ms ease-in-out, min-width 280ms ease-in-out, max-width 280ms ease-in-out !important;
-            overflow-x: hidden !important;
-        }}
+        /* ── Desktop Sidebar System (Strict 260px / 72px) ────────────────── */
+        @media (min-width: 769px) {{
+            [data-testid="stSidebar"] {{
+                background-color: var(--bg-sidebar) !important;
+                border-right: 1px solid var(--border) !important;
+                width: {sidebar_width} !important;
+                min-width: {sidebar_width} !important;
+                max-width: {sidebar_width} !important;
+                box-shadow: none !important;
+                transform: none !important;
+                margin-left: 0 !important;
+                display: block !important;
+                visibility: visible !important;
+                transition: width 280ms ease-in-out, min-width 280ms ease-in-out, max-width 280ms ease-in-out !important;
+                overflow-x: hidden !important;
+            }}
 
-        [data-testid="stSidebar"][aria-expanded="false"] {{
-            transform: none !important;
-            margin-left: 0 !important;
-            display: block !important;
-            visibility: visible !important;
-            width: {sidebar_width} !important;
-            min-width: {sidebar_width} !important;
-            max-width: {sidebar_width} !important;
+            [data-testid="stSidebar"][aria-expanded="false"] {{
+                transform: none !important;
+                margin-left: 0 !important;
+                display: block !important;
+                visibility: visible !important;
+                width: {sidebar_width} !important;
+                min-width: {sidebar_width} !important;
+                max-width: {sidebar_width} !important;
+            }}
+
+            /* Floating button completely suppressed on desktop */
+            div[data-testid="stElementContainer"]:has(button[data-testid*="mobile_sidebar_expand_btn"]),
+            .stButton:has(button[data-testid*="mobile_sidebar_expand_btn"]),
+            button[data-testid*="mobile_sidebar_expand_btn"] {{
+                display: none !important;
+                height: 0 !important;
+                min-height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }}
         }}
 
         [data-testid="stSidebar"] [data-testid="stSidebarUserContent"] {{
@@ -812,17 +825,107 @@ def apply_custom_styles(theme: str = "dark", sidebar_collapsed: bool = False):
                 min-width: 110px !important;
             }}
 
-            /* Mobile Sidebar Drawer */
-            [data-testid="stSidebar"] {{
-                width: 84vw !important;
-                min-width: 260px !important;
-                max-width: 320px !important;
-                box-shadow: 0 0 24px rgba(0, 0, 0, 0.45) !important;
-                z-index: 999999 !important;
-                -webkit-overflow-scrolling: touch !important;
+            /* Mobile Sidebar: Drawer when expanded, 0px completely hidden when collapsed */
+            {'[data-testid="stSidebar"] {'
+             '    display: none !important;'
+             '    visibility: hidden !important;'
+             '    width: 0 !important;'
+             '    min-width: 0 !important;'
+             '    max-width: 0 !important;'
+             '    margin: 0 !important;'
+             '    padding: 0 !important;'
+             '    border: none !important;'
+             '    pointer-events: none !important;'
+             '    position: fixed !important;'
+             '    transform: translateX(-100%) !important;'
+             '}' if sidebar_collapsed else
+             '[data-testid="stSidebar"] {'
+             '    position: fixed !important;'
+             '    top: 0 !important;'
+             '    left: 0 !important;'
+             '    bottom: 0 !important;'
+             '    height: 100vh !important;'
+             '    height: 100dvh !important;'
+             '    width: min(82vw, 320px) !important;'
+             '    min-width: 260px !important;'
+             '    max-width: 320px !important;'
+             '    z-index: 999999 !important;'
+             '    display: block !important;'
+             '    visibility: visible !important;'
+             '    transform: translateX(0) !important;'
+             '    box-shadow: 0 0 32px rgba(0, 0, 0, 0.5), 0 0 0 100vmax rgba(0, 0, 0, 0.45) !important;'
+             '    border-right: 1px solid var(--border) !important;'
+             '    background-color: var(--bg-sidebar) !important;'
+             '    overflow-y: auto !important;'
+             '    overflow-x: hidden !important;'
+             '    -webkit-overflow-scrolling: touch !important;'
+             '    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) !important;'
+             '}'}
+
+            /* On mobile, main content occupies 100% viewport width without sidebar indentation */
+            [data-testid="stMain"],
+            .stMain,
+            div[data-testid="stAppViewContainer"] > div:nth-child(2) {{
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100vw !important;
+                margin-left: 0 !important;
+                left: 0 !important;
             }}
+
+            /* Floating Expand Button (Mobile Only) */
+            div[data-testid="stElementContainer"]:has(button[data-testid*="mobile_sidebar_expand_btn"]),
+            .stButton:has(button[data-testid*="mobile_sidebar_expand_btn"]) {{
+                position: fixed !important;
+                top: 7px !important;
+                left: 12px !important;
+                z-index: 100000 !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }}
+
+            button[data-testid*="mobile_sidebar_expand_btn"] {{
+                position: fixed !important;
+                top: 7px !important;
+                left: 12px !important;
+                z-index: 100000 !important;
+                width: 44px !important;
+                height: 38px !important;
+                min-width: 44px !important;
+                min-height: 38px !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                background: var(--card-primary) !important;
+                background-color: var(--card-primary) !important;
+                border: 1px solid var(--border) !important;
+                border-radius: 8px !important;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+                color: var(--text-primary) !important;
+                font-size: 18px !important;
+                cursor: pointer !important;
+                transition: all 150ms ease !important;
+            }}
+            button[data-testid*="mobile_sidebar_expand_btn"]:hover {{
+                background: var(--card-hover) !important;
+                border-color: var(--primary-blue) !important;
+                transform: translateY(-1px) !important;
+            }}
+            button[data-testid*="mobile_sidebar_expand_btn"]:focus-visible {{
+                outline: 2px solid var(--primary-blue) !important;
+                outline-offset: 2px !important;
+            }}
+            button[data-testid*="mobile_sidebar_expand_btn"] p {{
+                font-size: 18px !important;
+                line-height: 1 !important;
+                margin: 0 !important;
+                color: var(--text-primary) !important;
+            }}
+
             section[data-testid="stSidebar"] .stButton > button {{
-                min-height: 42px !important;
+                min-height: 44px !important;
                 padding: 9px 12px !important;
                 font-size: 13px !important;
             }}

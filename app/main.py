@@ -247,6 +247,11 @@ if not valid_thresh:
 # ── Render Architecture-Fixed Sidebar ─────────────────────────────────
 render_sidebar(actual_thresh=actual_thresh)
 
+# ── Mobile Floating Expand Button (Visible when sidebar is collapsed) ─
+if st.session_state.get("sidebar_collapsed", False):
+    if st.button("☰", key="mobile_sidebar_expand_btn", help="Open navigation"):
+        st.session_state.sidebar_collapsed = False
+        st.rerun()
 
 # ── Clean Top Navbar ──────────────────────────────────────────────────
 with st.container():
