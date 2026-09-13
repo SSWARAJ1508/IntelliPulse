@@ -161,35 +161,26 @@ def apply_custom_styles(theme: str = "dark", sidebar_collapsed: bool = False):
             height: 2.75rem !important;
             z-index: 99999 !important;
         }}
-        [data-testid="stSidebarCollapsedControl"] {{
-            visibility: visible !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background: var(--card-secondary) !important;
-            border: 1px solid var(--border) !important;
-            border-radius: 8px !important;
-            color: var(--text-primary) !important;
-            top: 0.5rem !important;
-            left: 0.75rem !important;
-            width: 34px !important;
-            height: 34px !important;
-            z-index: 100000 !important;
-            transition: all 150ms ease !important;
-            cursor: pointer !important;
+        /* Suppress Streamlit's native sidebar collapse controls.
+           Sidebar collapsing is exclusively managed by the custom arrow control (sidebar_toggle_arrow) */
+        [data-testid="stSidebarCollapseButton"],
+        [data-testid="stSidebarCollapsedControl"],
+        [data-testid="stExpandSidebarButton"] {{
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }}
-        [data-testid="stSidebarCollapsedControl"]:hover {{
-            background: var(--card-hover) !important;
-            border-color: var(--primary-blue) !important;
-        }}
-        [data-testid="stSidebarCollapsedControl"] button {{
-            color: var(--text-primary) !important;
-            background: transparent !important;
-            border: none !important;
-        }}
-        [data-testid="stSidebarCollapsedControl"] svg {{
-            fill: var(--text-primary) !important;
-            color: var(--text-primary) !important;
+        [data-testid="stSidebarHeader"] {{
+            display: none !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }}
 
         /* ── Custom Scrollbar ────────────────────────────────────────────── */
@@ -467,8 +458,23 @@ def apply_custom_styles(theme: str = "dark", sidebar_collapsed: bool = False):
             width: {sidebar_width} !important;
             min-width: {sidebar_width} !important;
             max-width: {sidebar_width} !important;
+            box-shadow: none !important;
+            transform: none !important;
+            margin-left: 0 !important;
+            display: block !important;
+            visibility: visible !important;
             transition: width 280ms ease-in-out, min-width 280ms ease-in-out, max-width 280ms ease-in-out !important;
             overflow-x: hidden !important;
+        }}
+
+        [data-testid="stSidebar"][aria-expanded="false"] {{
+            transform: none !important;
+            margin-left: 0 !important;
+            display: block !important;
+            visibility: visible !important;
+            width: {sidebar_width} !important;
+            min-width: {sidebar_width} !important;
+            max-width: {sidebar_width} !important;
         }}
 
         [data-testid="stSidebar"] [data-testid="stSidebarUserContent"] {{
@@ -524,20 +530,6 @@ def apply_custom_styles(theme: str = "dark", sidebar_collapsed: bool = False):
             font-weight: 600 !important;
         }}
 
-        /* Streamlit default collapse arrow styling */
-        [data-testid="stSidebarCollapseButton"] {{
-            color: var(--text-muted) !important;
-            transition: color 150ms ease !important;
-        }}
-        [data-testid="stSidebarCollapseButton"]:hover {{
-            color: var(--text-primary) !important;
-        }}
-        [data-testid="stSidebarCollapseButton"] button {{
-            color: var(--text-muted) !important;
-        }}
-        [data-testid="stSidebarCollapseButton"] svg {{
-            fill: var(--text-muted) !important;
-        }}
 
         @media (min-width: 992px) {{
             [data-testid="stSidebar"] {{
@@ -684,6 +676,18 @@ def apply_custom_styles(theme: str = "dark", sidebar_collapsed: bool = False):
                     opacity: 1;
                     transform: translateY(0);
                 }}
+            }}
+        }}
+
+        @keyframes intellipulse-progress {{
+            0% {{
+                transform: translateX(-100%);
+            }}
+            50% {{
+                transform: translateX(0%);
+            }}
+            100% {{
+                transform: translateX(100%);
             }}
         }}
 

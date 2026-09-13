@@ -34,7 +34,8 @@ from app.services.monitoring_pipeline import (
 from app.styles import apply_custom_styles, get_status_html
 from app.components import (
     render_sidebar, render_hero_banner, render_kpi_card, render_metadata_strip,
-    render_pipeline_timeline, render_empty_state_card, render_status_badge, render_html
+    render_pipeline_timeline, render_empty_state_card, render_status_badge, render_html,
+    get_splash_html
 )
 from app.charts import plot_gauge, plot_bar, plot_confusion_matrix, plot_performance_trend
 
@@ -75,6 +76,14 @@ current_theme = st.session_state.theme
 
 # Apply Calm Enterprise Styles
 apply_custom_styles(theme=current_theme, sidebar_collapsed=st.session_state.sidebar_collapsed)
+
+# ── Initial Session Splash Screen Guard (1.6s) ────────────────────────
+if not st.session_state.get("splash_shown", False):
+    splash_placeholder = st.empty()
+    splash_placeholder.markdown(get_splash_html(theme=current_theme), unsafe_allow_html=True)
+    time.sleep(1.6)
+    splash_placeholder.empty()
+    st.session_state.splash_shown = True
 
 def get_gemini_connection_status():
     """

@@ -316,3 +316,113 @@ def render_empty_state_card(title: str, message: str, icon: str = "📭", reason
         f'</div>'
     )
     render_html(html)
+
+
+def get_splash_html(theme: str = "dark") -> str:
+    """
+    Returns trusted HTML string for the initial 1.6-second enterprise splash screen.
+    Matches IntelliPulse visual identity for both dark and light modes.
+    Guarantees zero indentation on each line to prevent raw HTML code-block rendering.
+    """
+    is_dark = (theme != "light")
+    bg_color = "#0F172A" if is_dark else "#F8FAFC"
+    card_bg = "#1E293B" if is_dark else "#FFFFFF"
+    card_border = "#334155" if is_dark else "#E2E8F0"
+    text_primary = "#F8FAFC" if is_dark else "#0F172A"
+    text_muted = "#94A3B8" if is_dark else "#64748B"
+    track_bg = "rgba(148, 163, 184, 0.15)" if is_dark else "rgba(148, 163, 184, 0.2)"
+    box_shadow = "0 20px 48px rgba(0, 0, 0, 0.4)" if is_dark else "0 16px 40px rgba(15, 23, 42, 0.08)"
+
+    raw_html = f"""
+<div id="intellipulse-splash-overlay" style="
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background-color: {bg_color};
+z-index: 99999999;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+box-sizing: border-box;
+margin: 0;
+padding: 20px;
+">
+<div style="
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+padding: 38px 42px;
+background: {card_bg};
+border: 1px solid {card_border};
+border-radius: 14px;
+box-shadow: {box_shadow};
+max-width: 420px;
+width: 100%;
+box-sizing: border-box;
+">
+<div style="
+width: 52px;
+height: 52px;
+border-radius: 12px;
+background: rgba(37, 99, 235, 0.12);
+border: 1px solid rgba(37, 99, 235, 0.25);
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 16px;
+">
+<span style="color: #2563EB; font-size: 26px; font-weight: 700; line-height: 1;">〽</span>
+</div>
+<div style="
+font-size: 22px;
+font-weight: 700;
+color: {text_primary};
+letter-spacing: -0.02em;
+margin-bottom: 4px;
+">
+IntelliPulse
+</div>
+<div style="
+font-size: 11px;
+font-weight: 600;
+color: {text_muted};
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin-bottom: 24px;
+">
+AI for Model Health
+</div>
+<div style="
+width: 100%;
+max-width: 240px;
+height: 4px;
+background: {track_bg};
+border-radius: 4px;
+overflow: hidden;
+position: relative;
+margin-bottom: 14px;
+">
+<div style="
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, #2563EB, #60A5FA);
+border-radius: 4px;
+animation: intellipulse-progress 1.5s ease-in-out infinite;
+"></div>
+</div>
+<div style="
+font-size: 11.5px;
+font-weight: 500;
+color: {text_muted};
+letter-spacing: 0.01em;
+">
+Initializing monitoring environment…
+</div>
+</div>
+</div>
+"""
+    return "\n".join(line.strip() for line in raw_html.strip().splitlines() if line.strip())
